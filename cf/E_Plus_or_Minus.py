@@ -4,6 +4,3 @@ for _ in range(int(input())):
         print('+')
     else:
         print('-')
-
-
-        
