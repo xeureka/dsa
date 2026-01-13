@@ -1,19 +1,24 @@
 class Solution:
     def separateSquares(self, squares: List[List[int]]) -> float:
-        def check(y1: float) -> bool:
-            t = 0
-            for _, y, l in squares:
-                if y < y1:
-                    t += l * min(y1 - y, l)
-            return t >= s / 2
+        def checker(mid):
+            above = 0.0
+            below = 0.0
 
-        s = sum(a[2] * a[2] for a in squares)
-        l, r = 0, max(a[1] + a[2] for a in squares)
-        eps = 1e-5
-        while r - l > eps:
-            mid = (l + r) / 2
-            if check(mid):
-                r = mid
-            else:
+            for x, y, l in squares:
+                if y >= mid:
+                    above += l * l
+                elif y + l <= mid:
+                    below += l * l
+                else:
+                    above += (y + l - mid) * l
+                    below += (mid - y) * l
+
+            return above - below
+        l, r = 0, 1e9
+        while (r - l) > 1e-5:
+            mid = (r + l) / 2
+            if checker(mid) > 0:
                 l = mid
+            else:
+                r = mid
         return r
