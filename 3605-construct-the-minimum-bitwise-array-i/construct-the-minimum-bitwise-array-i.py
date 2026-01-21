@@ -1,7 +1,8 @@
-class Solution(object):
-    def minBitwiseArray(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        return [next((i for i in xrange(x) if i|(i+1) == x), -1) for x in nums]
+class Solution:
+    def minBitwiseArray(self, nums: List[int]) -> List[int]:
+        def calc(num):
+            i = 0
+            while num & (1 << i):
+                i += 1
+            return num ^ (1 << (i - 1))
+        return [calc(num) if num & 1 else -1 for num in nums]
