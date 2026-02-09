@@ -1,11 +1,5 @@
-class Solution(object):
-    def isAnagram(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
-        if len(s) != len(t):
-            return False
-        s_counter,t_counter = Counter(s),Counter(t)
-        return s_counter == t_counter
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        counter_s = Counter(s)
+        counter_t = Counter(t)
+        return counter_s == counter_t
