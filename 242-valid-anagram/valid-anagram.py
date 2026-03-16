@@ -1,5 +1,7 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        counter_s = Counter(s)
-        counter_t = Counter(t)
-        return counter_s == counter_t
+        counter1 = Counter(s)
+        counter2 = Counter(t)
+
+        return counter1 == counter2
+
